@@ -16,6 +16,7 @@
   --script:'Allura',cursive; --serif:'Cormorant Garamond',Georgia,serif; --sans:'Jost',system-ui,sans-serif;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300}
 body{min-height:100vh;overflow-x:hidden}
 section{display:none;min-height:100vh;padding:20px 20px 60px;position:relative}
@@ -62,6 +63,40 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0}
 .modal .wa-chip{width:100%;justify-content:center;margin-bottom:10px}
 .modal .ico{width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;background:var(--rose-xl);border:2px solid var(--rose-l);color:var(--rose-d);font-size:20px}
 .modal .ico img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.cal{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px 10px 10px;margin-bottom:12px}
+.cal-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.cal-h b{font-family:var(--serif);font-size:22px;font-weight:500;text-transform:capitalize}
+.cal-h button{border:0;background:none;color:var(--rose-d);font-size:26px;line-height:1;padding:2px 14px;cursor:pointer}
+.cal-h button:disabled{opacity:.2;cursor:default}
+.cal-g{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;align-items:start}
+.cal-w{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);text-align:center;padding:2px 0 4px}
+.cal-w.dom{color:var(--busy)}
+.c{min-width:0;aspect-ratio:1/1.1;border:1px solid transparent;border-radius:12px;background:none;font-family:var(--serif);font-size:19px;font-weight:500;color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;padding:0;position:relative}
+.c .pip{width:5px;height:5px;border-radius:50%;background:transparent}
+.c.open{border-color:#cfe2d6}
+.c.open .pip{background:var(--ok)}
+.c.open.full .pip{background:var(--busy)}
+.c.closed{opacity:.5}
+.c.dom{color:var(--busy);background:#fdf1ee}
+.c.fer{color:#8f6520;background:var(--wait-bg)}
+.c.fer::after{content:"★";position:absolute;top:3px;right:5px;font-size:8px;color:#c89b3c}
+.c.today{box-shadow:inset 0 0 0 1.5px var(--rose)}
+.c.past{opacity:.22;cursor:default}
+.c.sel{background:linear-gradient(160deg,#dba48f,#bf7b65);color:#fff;border-color:transparent;opacity:1}
+.c.sel .pip{background:#fff}
+.cal.adm .c.closed{opacity:.85}
+.cal.adm .c.open{background:var(--ok-bg);color:#3f6b55;border-color:#b9d6c4}
+.cal.adm .c.open.dom{background:#e3efe7;color:var(--busy)}
+.cal.adm .c.open.fer{background:#efeedd;color:#8f6520}
+.cal.adm .c.past{opacity:.22}
+.legend.cl .ld::before{background:#e5a49b}
+.legend.cl .lh::before{background:#e3b35a}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin:-4px 0 12px}
+.tag{font-size:12px;letter-spacing:.04em;padding:5px 12px;border-radius:99px}
+.tag.fer{background:var(--wait-bg);color:#8f6520}
+.tag.dom{background:#fdf1ee;color:var(--busy)}
+.dayclosed{background:#faf5f3;border:1px dashed var(--line);border-radius:14px;padding:16px;text-align:center;color:var(--soft);font-size:14px;line-height:1.6;margin:6px 0 4px}
+.dayclosed small{font-size:12px}
 /* topo interno */
 .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
 .back{background:none;border:0;color:var(--rose-d);font-family:var(--sans);font-size:14px;cursor:pointer;padding:8px 0}
@@ -96,7 +131,8 @@ input:focus{border-color:var(--rose);box-shadow:0 0 0 4px #f6e3db88}
 .d .pip{display:block;margin:5px auto 0;width:5px;height:5px;border-radius:50%;background:var(--ok)}
 .d.full .pip{background:var(--busy)}
 .d.sel .pip{background:#fff}
-.dayname{font-family:var(--serif);font-style:italic;font-size:20px;margin:2px 0 12px;text-transform:capitalize}
+.dayname{font-family:var(--serif);font-style:italic;font-size:20px;margin:2px 0 12px;text-transform:none}
+.dayname::first-letter{text-transform:uppercase}
 
 /* horários */
 .slots{display:grid;gap:10px}
@@ -125,7 +161,7 @@ input:focus{border-color:var(--rose);box-shadow:0 0 0 4px #f6e3db88}
 
 /* admin */
 .tabs{display:flex;gap:6px;background:var(--rose-xl);padding:5px;border-radius:999px;margin-bottom:20px}
-.tabs button{flex:1;border:0;background:none;font:inherit;font-size:13px;color:var(--soft);padding:10px 6px;border-radius:999px;cursor:pointer}
+.tabs button{flex:1;border:0;background:none;font:inherit;font-size:12px;color:var(--soft);padding:10px 2px;border-radius:999px;cursor:pointer}
 .tabs button.on{background:#fff;color:var(--rose-d);box-shadow:0 2px 8px #c98b7633}
 .badge{display:inline-block;min-width:18px;padding:1px 6px;border-radius:99px;background:var(--rose);color:#fff;font-size:11px;margin-left:4px}
 .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:12px}
@@ -186,8 +222,11 @@ input:focus{border-color:var(--rose);box-shadow:0 0 0 4px #f6e3db88}
         <label><input type="radio" name="svc" value="Esmaltação em gel"><span class="dot"></span><b>Esmaltação em gel</b></label>
       </div>
       <div class="lbl">Data</div>
-      <div class="dates" id="bkDates"></div>
-      <div class="lbl">Horário</div>
+      <div class="cal" id="bkCal"></div>
+      <div class="legend cl" style="margin-top:0"><span>Aberto</span><span class="ld">Domingo</span><span class="lh">Feriado</span><span class="g">Fechado</span></div>
+      <div class="dayname" id="bkDay" style="margin-top:14px"></div>
+      <div id="bkNote"></div>
+      <div class="lbl" id="bkHr">Horário</div>
       <div class="slots grid" id="bkSlots"></div>
       <div class="legend"><span>Vago</span><span class="b">Ocupado</span><span class="g">Indisponível</span></div>
       <div class="summary" id="bkSummary" hidden></div>
@@ -214,8 +253,10 @@ input:focus{border-color:var(--rose);box-shadow:0 0 0 4px #f6e3db88}
   <div class="wrap">
     <div class="top"><button class="back" data-go="cover">‹ Voltar</button></div>
     <div class="title"><div class="script">Agenda</div><p>Atualizada em tempo real</p></div>
-    <div class="dates" id="agDates"></div>
-    <div class="dayname" id="agDay"></div>
+    <div class="cal" id="agCal"></div>
+    <div class="legend cl" style="margin-top:0"><span>Aberto</span><span class="ld">Domingo</span><span class="lh">Feriado</span><span class="g">Fechado</span></div>
+    <div class="dayname" id="agDay" style="margin-top:14px"></div>
+    <div id="agNote"></div>
     <div class="slots" id="agSlots"></div>
     <div class="legend"><span>Vago</span><span class="b">Ocupado</span><span class="g">Indisponível</span></div>
     <div style="text-align:center;margin-top:26px"><button class="btn" data-go="book">Agendar</button></div>
@@ -248,14 +289,28 @@ input:focus{border-color:var(--rose);box-shadow:0 0 0 4px #f6e3db88}
         <button data-tab="pend" class="on">Pendentes<span class="badge" id="bdg" hidden>0</span></button>
         <button data-tab="dia">Agenda do dia</button>
         <button data-tab="conf">Confirmados</button>
+        <button data-tab="lib">Liberar dias</button>
       </div>
       <div id="tabPend"></div>
       <div id="tabDia" hidden>
-        <div class="dates" id="adDates"></div>
+        <div class="cal" id="adCal"></div>
         <div class="dayname" id="adDay"></div>
+        <div id="adDayCtl"></div>
         <div id="adSlots"></div>
       </div>
       <div id="tabConf" hidden></div>
+      <div id="tabLib" hidden>
+        <p class="muted" style="font-size:14px;text-align:center;margin:0 0 14px;line-height:1.6">Toque nos dias para <b>abrir</b> ou <b>fechar</b> a agenda.<br>Só os dias abertos aparecem para as clientes.</p>
+        <div class="cal" id="libCal"></div>
+        <div class="legend cl" style="margin-top:0"><span>Aberto</span><span class="ld">Domingo</span><span class="lh">Feriado</span><span class="g">Fechado</span></div>
+        <div class="sec-h" style="text-align:center">Atalhos do mês</div>
+        <div class="acts" style="justify-content:center">
+          <button class="btn sm ok" data-lib="util">Abrir seg–sáb (sem feriados)</button>
+          <button class="btn sm ghost" data-lib="all">Abrir mês todo</button>
+          <button class="btn sm bad" data-lib="none">Fechar mês</button>
+        </div>
+        <p class="muted" style="font-size:12px;text-align:center;margin-top:14px">Fechar um dia não cancela quem já agendou nele.</p>
+      </div>
       <div id="adDemo" style="text-align:center;margin-top:30px" hidden><button class="btn ghost sm" id="adClear">Limpar dados de demonstração</button></div>
     </div>
   </div>
@@ -278,7 +333,9 @@ input:focus{border-color:var(--rose);box-shadow:0 0 0 4px #f6e3db88}
 const CONFIG = {
   adminPin: "2520",          // senha da Talita (troque aqui)
   whatsapp: "87981779226",   // WhatsApp da Talita (DDD + número, só dígitos)
-  daysAhead: 45,             // quantos dias à frente aparecem para agendar
+  monthsAhead: 11,           // quantos meses à frente o calendário permite navegar
+  daysAhead: 45,             // (usado só nos exemplos da demonstração)
+  feriadosExtras: {},        // feriados locais/estaduais. Ex.: {"06-24":"São João","03-06":"Data Magna de Pernambuco"}
   times: ["08:00","10:30","13:30","15:30","18:00"],
   supabase: { url: "https://slnppbopgxxmwzrbtfyd.supabase.co", key: "sb_publishable_-aQtSsQvTxbDWQLnK6LvBg_L8IpF4yH" }
 };
@@ -301,6 +358,19 @@ const digits = s => String(s||"").replace(/\D/g,"");
 const waLink = (phone,msg) => { let p=digits(phone); if(p.length<=11) p="55"+p; return `https://wa.me/${p}?text=${encodeURIComponent(msg||"")}`; };
 function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("on"); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove("on"),3200); }
 function days(){ const out=[]; const t=new Date(); t.setHours(0,0,0,0); for(let i=0;i<CONFIG.daysAhead;i++){ const d=new Date(t); d.setDate(t.getDate()+i); out.push(ymd(d)); } return out; }
+
+const openId = d => "open_"+d;   // registro "dia aberto" na agenda
+function easter(y){ const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),mo=Math.floor((h+l-7*m+114)/31),da=((h+l-7*m+114)%31)+1; return new Date(y,mo-1,da); }
+const HC = {};
+function holidays(y){
+  if(HC[y]) return HC[y];
+  const h={}, fx={"01-01":"Confraternização Universal","04-21":"Tiradentes","05-01":"Dia do Trabalho","09-07":"Independência do Brasil","10-12":"Nossa Senhora Aparecida","11-02":"Finados","11-15":"Proclamação da República","11-20":"Consciência Negra","12-25":"Natal",...CONFIG.feriadosExtras};
+  for(const k in fx) h[`${y}-${k}`]=fx[k];
+  const e=easter(y), off=n=>{ const d=new Date(e); d.setDate(d.getDate()+n); return ymd(d); };
+  h[off(-48)]="Carnaval"; h[off(-47)]="Carnaval"; h[off(-2)]="Sexta-feira Santa"; h[ymd(e)]="Páscoa"; h[off(60)]="Corpus Christi";
+  return HC[y]=h;
+}
+const holiday = ds => holidays(+ds.slice(0,4))[ds] || "";
 
 /* ================= AVISOS PELO WHATSAPP ================= */
 /* O WhatsApp não permite que uma página envie mensagem sozinha: o app abre a conversa com o texto pronto
@@ -336,7 +406,7 @@ let DATA = {};               // { id: {status, nome, tel, servico, date, time, c
 let onData = () => {};
 const store = {};
 
-const LS_KEY = "tn_agenda_v1";
+const LS_KEY = "tn_agenda_v2";
 function localStore(){
   const read = () => { try { return JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch(e){ return {}; } };
   const write = o => localStorage.setItem(LS_KEY, JSON.stringify(o));
@@ -346,6 +416,7 @@ function localStore(){
     add(1,"10:30","confirmed","Cliente exemplo","Aplicação");
     add(1,"15:30","pending","Maria (exemplo)","Manutenção");
     add(2,"08:00","confirmed","Ana (exemplo)","Esmaltação em gel");
+    ds.slice(0,21).forEach(d=>{ if(parseYmd(d).getDay()!==0) seed[openId(d)]={status:"open",date:d,time:"",nome:"",tel:"",servico:"",criado:Date.now()}; });
     write(seed);
   }
   store.mode = "local";
@@ -353,6 +424,7 @@ function localStore(){
   store.book = async (id,rec) => { const o=read(); if(o[id]) return false; o[id]=rec; write(o); store._cb(o); return true; };
   store.put  = async (id,patch) => { const o=read(); o[id]={...(o[id]||{}),...patch}; write(o); store._cb(o); };
   store.remove = async id => { const o=read(); delete o[id]; write(o); store._cb(o); };
+  store.setOpen = async (dates,open) => { const o=read(); dates.forEach(d=>{ if(open) o[openId(d)]={status:"open",date:d,time:"",nome:"",tel:"",servico:"",criado:Date.now()}; else delete o[openId(d)]; }); write(o); store._cb(o); };
   store.clear = async () => { write({}); store._cb({}); };
 }
 
@@ -367,6 +439,7 @@ async function supabaseStore(cfg){
       if (error){ console.error(error); toast("Sem conexão com a agenda online"); return; }
       const o={}; data.forEach(r=>o[r.id]=r); cb(o);
     };
+    store._load = load;
     await load();
     sb.channel("agenda-rt").on("postgres_changes",{event:"*",schema:"public",table:T},load).subscribe();
     setInterval(load, 30000);          // reserva: atualiza sozinho mesmo se o tempo real falhar
@@ -375,18 +448,23 @@ async function supabaseStore(cfg){
   store.book = async (id,rec) => {
     const { error } = await sb.from(T).insert({ id, ...rec });
     if (error){ if (error.code==="23505") return false; throw error; }
-    return true;
+    await store._load(); return true;
   };
   store.put = async (id,patch) => {
     const q = DATA[id] ? sb.from(T).update(patch).eq("id",id) : sb.from(T).insert({ id, ...patch });
-    const { error } = await q; if (error) throw error;
+    const { error } = await q; if (error) throw error; await store._load();
   };
-  store.remove = async id => { const { error } = await sb.from(T).delete().eq("id",id); if (error) throw error; };   // apagar = horário volta a ficar vago
+  store.remove = async id => { const { error } = await sb.from(T).delete().eq("id",id); if (error) throw error; await store._load(); };
+  store.setOpen = async (dates,open) => {            // abrir/fechar dias da agenda
+    if (open){ const { error } = await sb.from(T).upsert(dates.map(d=>({ id:openId(d), status:"open", date:d, time:"", nome:"", tel:"", servico:"", criado:Date.now() }))); if (error) throw error; }
+    else { const { error } = await sb.from(T).delete().in("id",dates.map(openId)); if (error) throw error; }
+    await store._load();
+  };   // apagar = horário volta a ficar vago
   store.clear = async () => {};
 }
 
 /* ================= ESTADO / NAVEGAÇÃO ================= */
-const S = { view:"cover", bookDate:null, bookTime:null, agDate:null, adDate:null, adTab:"pend", admin:false };
+const S = { auto:{book:true,ag:true}, view:"cover", bookDate:null, bookTime:null, agDate:null, adDate:null, adTab:"pend", admin:false };
 
 function go(v){
   S.view = v;
@@ -399,53 +477,81 @@ function go(v){
 document.addEventListener("click",e=>{ const g=e.target.closest("[data-go]"); if(g){ e.preventDefault(); go(g.dataset.go); } });
 
 /* ================= SITUAÇÃO DO HORÁRIO ================= */
-function slotState(date,time){
+function dayOpen(date){ return !!DATA[openId(date)]; }
+function slotState(date,time,ignoreClosed){
   if (slotDate(date,time) <= new Date()) return "past";
+  if (!ignoreClosed && !dayOpen(date)) return "closed";
   const r = DATA[slotId(date,time)];
   if (!r) return "free";
   if (r.status==="blocked") return "blocked";
   return "busy";                       // pendente ou confirmado = ocupado
 }
-const LABEL = { free:"Vago", busy:"Ocupado", past:"Encerrado", blocked:"Indisponível" };
-function firstOpen(){ return days().find(d=>CONFIG.times.some(x=>slotState(d,x)==="free")) || days()[0]; }
+const LABEL = { free:"Vago", busy:"Ocupado", past:"Encerrado", blocked:"Indisponível", closed:"Fechado" };
+function firstOpen(){ const t=new Date(); t.setHours(0,0,0,0); for(let i=0;i<400;i++){ const d=new Date(t); d.setDate(t.getDate()+i); const ds=ymd(d); if(dayOpen(ds)&&CONFIG.times.some(x=>slotState(ds,x)==="free")) return ds; } return ymd(t); }
 function dayFull(date){ return CONFIG.times.every(t=>slotState(date,t)!=="free"); }
 
 /* ================= COMPONENTES ================= */
-function renderDates(el, selected, onPick){
-  el.innerHTML = days().map(ds=>{
-    const d=parseYmd(ds);
-    return `<div class="d ${ds===selected?"sel":""} ${dayFull(ds)?"full":""}" data-d="${ds}"><small>${WD[d.getDay()]}</small><b>${d.getDate()}</b><i>${MO[d.getMonth()]}</i><span class="pip"></span></div>`;
-  }).join("");
-  el.onclick = e=>{ const c=e.target.closest(".d"); if(c) onPick(c.dataset.d); };
-  const sel = el.querySelector(".sel"); if(sel && !el._scrolled){ el._scrolled=true; }
+const CAL = { book:{y:0,m:0}, ag:{y:0,m:0}, ad:{y:0,m:0}, lib:{y:0,m:0} };
+function renderCal(el,key,selected,onPick,adm){
+  const st=CAL[key];
+  if(!st.y){ const d=selected?parseYmd(selected):new Date(); st.y=d.getFullYear(); st.m=d.getMonth(); }
+  const now=new Date(); now.setHours(0,0,0,0); const tds=ymd(now);
+  const minI=now.getFullYear()*12+now.getMonth(), cur=st.y*12+st.m;
+  const first=new Date(st.y,st.m,1), n=new Date(st.y,st.m+1,0).getDate();
+  let h=`<div class="cal-h"><button data-nav="-1" ${cur<=minI?"disabled":""}>‹</button><b>${MOL[st.m]} ${st.y}</b><button data-nav="1" ${cur>=minI+CONFIG.monthsAhead?"disabled":""}>›</button></div><div class="cal-g">`;
+  h+=WD.map((w,i)=>`<div class="cal-w ${i===0?"dom":""}">${w}</div>`).join("");
+  for(let i=0;i<first.getDay();i++) h+="<div></div>";
+  for(let d=1;d<=n;d++){
+    const ds=`${st.y}-${pad(st.m+1)}-${pad(d)}`, wd=new Date(st.y,st.m,d).getDay(), past=ds<tds, open=dayOpen(ds);
+    const cls=["c",past?"past":"",open?"open":"closed",wd===0?"dom":"",holiday(ds)?"fer":"",ds===selected?"sel":"",ds===tds?"today":"",open&&!past&&dayFull(ds)?"full":""].join(" ");
+    h+=`<button class="${cls}" data-d="${ds}" ${past?"disabled":""}>${d}<span class="pip"></span></button>`;
+  }
+  el.className="cal"+(adm?" adm":""); el.innerHTML=h+"</div>";
+  el.onclick=e=>{
+    const nv=e.target.closest("[data-nav]");
+    if(nv){ if(nv.disabled) return; const i=st.y*12+st.m+Number(nv.dataset.nav); st.y=Math.floor(i/12); st.m=i%12; if(S.auto[key]!==undefined) S.auto[key]=false; renderCal(el,key,selected,onPick,adm); return; }
+    const c=e.target.closest(".c"); if(c&&!c.disabled) onPick(c.dataset.d);
+  };
 }
+function dayNote(ds){
+  const fer=holiday(ds), dom=parseYmd(ds).getDay()===0; let h="";
+  if(fer) h+=`<span class="tag fer">★ Feriado · ${esc(fer)}</span>`;
+  if(dom) h+=`<span class="tag dom">Domingo</span>`;
+  return h?`<div class="tags">${h}</div>`:"";
+}
+const CLOSED_MSG = `<div class="dayclosed">Agenda fechada neste dia.<br><small>A Talita ainda não liberou horários.</small></div>`;
 
 function renderBook(){
-  const ds = days();
-  if(!S.bookDate) S.bookDate = firstOpen();
-  renderDates($("#bkDates"), S.bookDate, d=>{ S.bookDate=d; S.bookTime=null; renderBook(); });
+  if(!S.bookDate || S.auto.book){ S.bookDate=firstOpen(); CAL.book.y=0; }
+  renderCal($("#bkCal"),"book",S.bookDate,d=>{ S.auto.book=false; S.bookDate=d; S.bookTime=null; renderBook(); });
+  const open=dayOpen(S.bookDate);
+  $("#bkDay").textContent=longDate(S.bookDate);
+  $("#bkNote").innerHTML=dayNote(S.bookDate)+(open?"":CLOSED_MSG);
   // se o horário escolhido foi ocupado por outra pessoa enquanto a cliente escolhia
   if (S.bookTime && slotState(S.bookDate,S.bookTime)!=="free"){ S.bookTime=null; toast("Esse horário acabou de ser ocupado. Escolha outro 💗"); }
-  $("#bkSlots").innerHTML = CONFIG.times.map(t=>{
+  $("#bkHr").hidden=!open; $("#bkSlots").hidden=!open;
+  $("#bkSlots").innerHTML = open ? CONFIG.times.map(t=>{
     const st=slotState(S.bookDate,t);
     const sel = S.bookTime===t && st==="free";
     return `<button class="s ${sel?"sel":st}" data-t="${t}" ${st!=="free"?"disabled":""}><b>${t}</b><em>${sel?"Escolhido":LABEL[st]}</em></button>`;
-  }).join("");
+  }).join("") : "";
   const sm=$("#bkSummary");
   if(S.bookTime){ sm.hidden=false; sm.innerHTML=`<b>${longDate(S.bookDate)}</b><br>às ${S.bookTime}`; } else sm.hidden=true;
 }
 $("#bkSlots").addEventListener("click",e=>{ const b=e.target.closest(".s.free,.s.sel"); if(!b) return; S.bookTime=b.dataset.t; renderBook(); });
 
 function renderAgenda(){
-  const ds=days(); if(!S.agDate) S.agDate=firstOpen();
-  renderDates($("#agDates"), S.agDate, d=>{ S.agDate=d; renderAgenda(); });
-  $("#agDay").textContent = longDate(S.agDate);
-  $("#agSlots").innerHTML = CONFIG.times.map(t=>{
+  if(!S.agDate || S.auto.ag){ S.agDate=firstOpen(); CAL.ag.y=0; }
+  renderCal($("#agCal"),"ag",S.agDate,d=>{ S.auto.ag=false; S.agDate=d; renderAgenda(); });
+  const open=dayOpen(S.agDate);
+  $("#agDay").textContent=longDate(S.agDate);
+  $("#agNote").innerHTML=dayNote(S.agDate)+(open?"":CLOSED_MSG);
+  $("#agSlots").innerHTML = open ? CONFIG.times.map(t=>{
     const st=slotState(S.agDate,t);
     return `<button class="s ${st}" data-t="${t}" style="display:flex;justify-content:space-between;align-items:center;text-align:left;padding:14px 18px" ${st==="free"?"":"disabled"}><b>${t}</b><em>${LABEL[st]}${st==="free"?" · agendar":""}</em></button>`;
-  }).join("");
+  }).join("") : "";
 }
-$("#agSlots").addEventListener("click",e=>{ const b=e.target.closest(".s.free"); if(!b) return; S.bookDate=S.agDate; S.bookTime=b.dataset.t; go("book"); });
+$("#agSlots").addEventListener("click",e=>{ const b=e.target.closest(".s.free"); if(!b) return; S.auto.book=false; S.bookDate=S.agDate; S.bookTime=b.dataset.t; CAL.book.y=0; go("book"); });
 
 /* ----- envio do pedido ----- */
 $("#fTel").addEventListener("input",e=>{
@@ -509,16 +615,18 @@ function apptCard(r){
 function renderAdmin(){
   if(!S.admin) return;
   $$("#adTabs button").forEach(b=>b.classList.toggle("on",b.dataset.tab===S.adTab));
-  $("#tabPend").hidden=S.adTab!=="pend"; $("#tabDia").hidden=S.adTab!=="dia"; $("#tabConf").hidden=S.adTab!=="conf";
+  $("#tabPend").hidden=S.adTab!=="pend"; $("#tabDia").hidden=S.adTab!=="dia"; $("#tabConf").hidden=S.adTab!=="conf"; $("#tabLib").hidden=S.adTab!=="lib";
   const pend=upcoming(r=>r.status==="pending"), conf=upcoming(r=>r.status==="confirmed");
   const bdg=$("#bdg"); bdg.hidden=!pend.length; bdg.textContent=pend.length;
   $("#tabPend").innerHTML = pend.length? pend.map(apptCard).join("") : `<div class="empty">Nenhum pedido aguardando ♡</div>`;
   $("#tabConf").innerHTML = conf.length? conf.map(apptCard).join("") : `<div class="empty">Nenhum atendimento confirmado ainda</div>`;
-  const ds=days(); if(!S.adDate) S.adDate=ds[0];
-  renderDates($("#adDates"), S.adDate, d=>{ S.adDate=d; renderAdmin(); });
+  if(!S.adDate) S.adDate=ymd(new Date());
+  renderCal($("#adCal"),"ad",S.adDate,d=>{ S.adDate=d; renderAdmin(); });
   $("#adDay").textContent=longDate(S.adDate);
+  const open=dayOpen(S.adDate);
+  $("#adDayCtl").innerHTML = dayNote(S.adDate)+`<div style="margin:2px 0 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="chip ${open?"confirmed":"blocked"}">${open?"Dia aberto":"Dia fechado"}</span><button class="btn sm ${open?"bad":"ok"}" data-dayopen="${S.adDate}" data-to="${open?0:1}">${open?"Fechar este dia":"Abrir este dia"}</button></div>`;
   $("#adSlots").innerHTML = CONFIG.times.map(t=>{
-    const id=slotId(S.adDate,t), r=DATA[id], st=slotState(S.adDate,t);
+    const id=slotId(S.adDate,t), r=DATA[id], st=slotState(S.adDate,t,true);
     if(r && r.status!=="blocked"){
       const acts = (r.status==="pending"?`<button class="btn sm ok" data-act="confirm" data-id="${id}">Confirmar</button>`:"")+`<button class="btn sm bad" data-act="cancel" data-id="${id}" data-ask="${r.status==="pending"?"Recusar este pedido?":"Cancelar este atendimento?"} O horário ficará vago.">${r.status==="pending"?"Recusar":"Cancelar"}</button>`;
       return `<div class="row"><div class="t">${t}</div><div class="i"><b>${esc(r.nome)}</b> <span class="chip ${r.status}">${r.status==="pending"?"Pendente":"Confirmado"}</span><small>${esc(r.servico)} · ${esc(r.tel)}</small></div><div class="acts">${acts}</div></div>`;
@@ -527,8 +635,24 @@ function renderAdmin(){
     if(st==="past") return `<div class="row" style="opacity:.5"><div class="t">${t}</div><div class="i muted">Encerrado</div></div>`;
     return `<div class="row free"><div class="t">${t}</div><div class="i" style="color:var(--ok)">Vago</div><div class="acts"><button class="btn sm ghost" data-act="block" data-id="${id}">Bloquear</button></div></div>`;
   }).join("");
+  renderCal($("#libCal"),"lib",null,toggleDay,true);
   $("#adDemo").hidden = store.mode!=="local";
 }
+async function setDays(dates,open,msg){
+  try{ await store.setOpen(dates,open); toast(msg); }
+  catch(err){ console.error(err); toast("Não foi possível salvar. Tente novamente."); }
+}
+const toggleDay = ds => setDays([ds],!dayOpen(ds),dayOpen(ds)?"Dia fechado":"Dia aberto para agendamento ✓");
+$("#tabDia").addEventListener("click",e=>{ const b=e.target.closest("[data-dayopen]"); if(b) setDays([b.dataset.dayopen],b.dataset.to==="1",b.dataset.to==="1"?"Dia aberto para agendamento ✓":"Dia fechado"); });
+$("#tabLib").addEventListener("click",async e=>{
+  const b=e.target.closest("[data-lib]"); if(!b) return;
+  const st=CAL.lib, n=new Date(st.y,st.m+1,0).getDate(), tds=ymd(new Date()), k=b.dataset.lib;
+  let ds=[]; for(let d=1;d<=n;d++){ const s=`${st.y}-${pad(st.m+1)}-${pad(d)}`; if(s>=tds) ds.push(s); }
+  if(k==="util") ds=ds.filter(s=>parseYmd(s).getDay()!==0 && !holiday(s));
+  if(!ds.length) return toast("Não há dias para alterar neste mês");
+  if(k==="none" && !confirm(`Fechar todos os dias de ${MOL[st.m]}? Quem já agendou continua na agenda.`)) return;
+  await setDays(ds,k!=="none",k==="none"?"Mês fechado":"Dias abertos ✓");
+});
 $("#adPanel").addEventListener("click",async e=>{
   const b=e.target.closest("[data-act]"); if(!b) return;
   const {act,id,ask}=b.dataset;
